@@ -26,14 +26,15 @@ const initTable = (parentElement) => {
             data = dataInput;
         }, 
         render: () => {
+            // Gli orari
             let tableStructure = [];
-            let dateRow = ["Orario", new Date(date).toLocaleDateString()];
+            let dateRow = ["Orario", "Lunedì " + new Date(date).toLocaleDateString()];
+            const giorni = ["Martedì", "Mercoledì", "Giovedì", "Venerdì"];
 
-            // Le date
             for (let i = 1; i < 5; i++) {
                 let weekDate = new Date(date);
                 weekDate.setDate(weekDate.getDate() + i);
-                dateRow.push(weekDate.toLocaleDateString()); 
+                dateRow.push(giorni[i - 1] + " " + weekDate.toLocaleDateString()); 
             }
 
             tableStructure.push(dateRow);
@@ -49,4 +50,12 @@ const initTable = (parentElement) => {
         }
     }
 }
+
+const getMondayOfDate = (inputDate) => {
+    const date = new Date(inputDate);
+    date.setDate(date.getDate() - (date.getDay() - 1));
+    return date.toISOString().split('T')[0]
+}
+
+
 
