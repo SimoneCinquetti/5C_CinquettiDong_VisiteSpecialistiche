@@ -17,3 +17,5 @@ const createListOfButtons = (parentElement) => {
         }
     }
 }
+
+export { createListOfButtons };

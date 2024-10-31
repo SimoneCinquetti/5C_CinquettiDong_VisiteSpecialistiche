@@ -51,4 +51,7 @@ const initTable = (parentElement) => {
     }
 }
 
+export { initTable };
+
+
 
