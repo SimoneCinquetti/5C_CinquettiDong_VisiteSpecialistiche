@@ -3,6 +3,11 @@ import { createListOfButtons } from './components/listOfButtons.js';
 import { createForm } from './components/form.js';
 import { getMondayOfDate } from './utils.js';
 
-const table = initTable(document.getElementById("tabella"));
-table.build("2024-10-28", "");
-table.render();
+const form = createForm(document.getElementById("test"));
+
+form.setLabels({"ciao" : [
+    "select", 
+    [8, 9, 10, 11, 12]
+]});
+
+form.render();

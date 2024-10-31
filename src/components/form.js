@@ -1,3 +1,15 @@
+/*
+    Struttura dizionario
+
+    {
+        "etichetta" : [
+            "tipo",
+            [valore1, valore2, valore3]
+        ]
+    }
+
+*/
+
 const createForm = (parentElement) => {
     let data;
     let callback = null;
@@ -11,9 +23,23 @@ const createForm = (parentElement) => {
         },
         render: () => {
             for (let key in data) {
-                parentElement.innerHTML += `<div>${key}\n<input id="${key}" type="${data[key]}"/></div>` + '\n';
+                if (data[key][1] == null) {
+                    parentElement.innerHTML += `<div>${key}\n<input id="${key}" type="${data[key][0]}"/></div>` + '\n';
+                } else {
+                    parentElement.innerHTML += `
+                        <div>
+                            ${key}
+                            <${data[key][0]} id="${key}">
+                              ${Object.entries(data[key][1]).map((value) => 
+                                `<option value="${value[1]}">${value[1]}</option>`
+                              ).join('')}
+                            </${data[key][0]}>
+                        </div>
+                    `; 
+                }
             }
-            parentElement.innerHTML += "<button type='button' id='submit'>Submit</button>";
+
+            parentElement.innerHTML += "<button type='button' id='submit'>Prenota</button>";
 
             document.querySelector("#submit").onclick = () => {
                 const result = Object.keys(data).map((name) => {
