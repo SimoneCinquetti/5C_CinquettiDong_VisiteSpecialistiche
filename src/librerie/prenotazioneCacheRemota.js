@@ -14,7 +14,14 @@ const gestorePrenotazioniCache = (keyCacheRemota,nomeDatabaseRemoto) => {
     }).then(r => r.json()).then(r=>dizionarioPrenotazioni=JSON.parse(r.result)).catch(error => { throw(error) })
     return {
         aggiungerePrenotazioneCache : (prenotazione,persona) => {
-            dizionarioPrenotazioni[prenotazione]=persona;
+            let check= true
+            for (key in dizionarioPrenotazioni){
+                if (key === prenotazione){
+                    check= false
+                }
+            }
+            if (check){
+                dizionarioPrenotazioni[prenotazione]=persona;
             fetch("http://ws.cipiaceinfo.it/cache/set", { 
                 method: "POST",
                 headers: {
@@ -27,6 +34,7 @@ const gestorePrenotazioniCache = (keyCacheRemota,nomeDatabaseRemoto) => {
                 })
             }).then(r => r.json())
               .then(r => {console.log(r.result)})
+            }
         },
         resetDizionarioPrenotazioniCache : () => {
             dizionarioPrenotazioni={}
