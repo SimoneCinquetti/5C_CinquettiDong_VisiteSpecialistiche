@@ -9,6 +9,7 @@ const table = initTable(document.getElementById("tabella"));
 table.build(getMondayOfDate("2024-06-04"), 
     { 
         "Cardiologia-04062024-9": "Mario Rossi",
+        "Cardiologia-07062024-9": "Mario Rossi",
         "Oncologia-21042025-12": "Sandra Bianchi",
     }
 );

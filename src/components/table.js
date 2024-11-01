@@ -68,10 +68,7 @@ const initTable = (parentElement) => {
                 tableStructure.push([i, ...tableRow]);
             }
 
-            const getCorrectDate = (date) => {
-                const newDate = date.split("-");
-                return newDate.reverse().join("");
-            }
+            const getCorrectDate = (date) => date.split("-").reverse().join("");
 
             for (let key in data) {
                 const coords = key.split("-");
