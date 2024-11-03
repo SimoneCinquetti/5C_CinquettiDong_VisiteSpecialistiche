@@ -27,8 +27,12 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
         let data=result[0].split("-").reverse().join("")
         prenotazione+=data+"-"
         prenotazione+=result[1]
-        document.getElementById("prompt").innerHTML = "Prenotazione effettuata!";
-        cacheRemota.aggiungerePrenotazioneCache(prenotazione,result[2])
+        if(data.length > 0 && result[1].length >0 && result[2].length > 0 ){
+            cacheRemota.aggiungerePrenotazioneCache(prenotazione,result[2])
+            document.getElementById("prompt").innerHTML = "Prenotazione effettuata!";
+        } else {
+            document.getElementById("prompt").innerHTML = "Prenotazione errata";
+        }
     });
     
     form.setLabels({
