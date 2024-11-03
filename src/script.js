@@ -1,7 +1,6 @@
 import { initTable } from './components/table.js';
 import { createListOfButtons } from './components/listOfButtons.js';
-import { createForm } from './components/form.js';
-import { createModalForm } from './components/form.js';
+import { createModalForm } from './components/modalForm.js';
 import { getMondayOfDate, chooseType } from './utils.js';
 import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js';
 
@@ -10,9 +9,6 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 console.log("ciao");
 
 const form = createModalForm(document.getElementById("modal-bd"));
-
-console.log(document.getElementById("test"));
-console.log("ciao");
 
 /*
 table.build(getMondayOfDate("2024-06-04"), 
