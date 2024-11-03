@@ -21,9 +21,13 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     // Form
     form.onsubmit((result) => {
-        
-        //DA AGGIUNGERE LA CATEGORIA E COMBINARLA CON DATA E ORA PER LA PRENOTAZIONE DA INSERIRE
-        //cacheRemota.aggiungerePrenotazioneCache() 
+        let prenotazione="";
+        prenotazione+=listOfButtons.getCurrentSelectedCategory()+"-"
+        let data=result[0].split("-").reverse().join("")
+        prenotazione+=data+"-"
+        prenotazione+=result[1]
+        console.log(prenotazione)
+        cacheRemota.aggiungerePrenotazioneCache(prenotazione,result[2])
     });
     
     form.setLabels({
