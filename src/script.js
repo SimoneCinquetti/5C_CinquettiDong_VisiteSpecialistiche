@@ -1,11 +1,13 @@
 import { initTable } from './components/table.js';
 import { createListOfButtons } from './components/listOfButtons.js';
 import { createForm } from './components/form.js';
+import { createModalForm } from './components/form.js';
 import { getMondayOfDate, chooseType } from './utils.js';
 import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js';
 
-const table = initTable(document.getElementById("tabella"));
-
+//const table = initTable(document.getElementById("tabella"));
+const form = createModalForm(document.getElementById("test"))
+/*
 table.build(getMondayOfDate("2024-06-04"), 
     { 
         "Cardiologia-04062024-9": "Mario Rossi",
@@ -23,3 +25,11 @@ console.log(chooseType(
 , "Cardiologia"));
 
 table.render();
+*/
+form.setLabels({
+    "etichetta" : [
+        "select",
+        ["a","b","c"]
+    ]
+});
+form.render();
