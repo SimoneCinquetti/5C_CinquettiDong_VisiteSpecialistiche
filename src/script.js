@@ -9,7 +9,7 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 
 console.log("ciao");
 
-const form = createModalForm(document.getElementById("test"));
+const form = createModalForm(document.getElementById("modal-bd"));
 
 console.log(document.getElementById("test"));
 console.log("ciao");
