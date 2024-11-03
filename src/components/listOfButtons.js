@@ -1,20 +1,24 @@
 const createListOfButtons = (parentElement) => {
     let data;
-    let tableBuilder;
+    let btnFunction;
     return {
         build: (dataInput, functionInput) => {
             data = dataInput;
-            tableBuilder = functionInput;
+            btnFunction = functionInput;
         },
         render: () => {
             let buttons = ""; 
-            buttons += data.map((e, index) => `<button id="button${index}">${e}</button>`).join("\n");
+            buttons += data.map((e, index) => `<button class="btn btn-link nav-link" id="button${index}">${e}</button>`).join("\n");
             parentElement.innerHTML = buttons;
 
             for (let i = 0; i < data.length; i++) {
-                document.getElementById("button" + i).onclick = tableBuilder;
+                document.getElementById("button" + i).onclick = btnFunction;
             }
+        },
+        getCurrentSelectedCategory: () => {
+
         }
+        
     }
 }
 
