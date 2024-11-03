@@ -6,8 +6,6 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 
 //const table = initTable(document.getElementById("tabella"));
 
-console.log("ciao");
-
 const form = createModalForm(document.getElementById("modal-bd"));
 
 form.onsubmit((result) => {
