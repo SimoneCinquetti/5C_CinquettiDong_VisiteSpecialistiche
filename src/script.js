@@ -9,11 +9,25 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 console.log("ciao");
 
 const form = createModalForm(document.getElementById("modal-bd"));
+fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
-form.onsubmit((result) => {
+    let cacheRemota= gestorePrenotazioniCache(keyCache,"prenotazioni")
+
+    form.onsubmit((result) => {
+        cacheRemota.aggiungerePrenotazioneCache() //la prenotazione richiede sia la data che la persona
+    });
     
-});
+    form.setLabels({
+        "etichetta" : [
+            "select",
+            ["a","b","c"]
+        ]
+    });
 
+    form.render();
+})
+
+//const cacheRemota = gestorePrenotazioniCache(keyCache,"prenotazioni") //mi serve modo per ottenere dal config la chiave
 /*
 table.build(getMondayOfDate("2024-06-04"), 
     { 
@@ -33,11 +47,3 @@ console.log(chooseType(
 
 table.render();
 */
-
-form.setLabels({
-    "etichetta" : [
-        "select",
-        ["a","b","c"]
-    ]
-});
-form.render();
