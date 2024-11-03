@@ -20,7 +20,7 @@ const createListOfButtons = (parentElement) => {
                     btnList.forEach((button) => button.classList.remove('active'));
                     this.classList.add('active');
                     currentActiveBtn = this.innerHTML.trim();
-                    btnFunction()
+                    btnFunction(currentActiveBtn);
                 }
             });
         },

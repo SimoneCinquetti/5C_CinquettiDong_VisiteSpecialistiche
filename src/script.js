@@ -11,8 +11,8 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
     
-    listOfButtons.build([...keyCache.tipologie], () => {
-
+    listOfButtons.build([...keyCache.tipologie], (currentActiveBtn) => {
+        
     });
 
     console.log(listOfButtons.getCurrentSelectedCategory());
