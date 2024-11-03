@@ -7,9 +7,7 @@
   </head>
   <body>
     <!--Tipologie-->
-    <div class="btn-group" id="tipologie" role="group">
-
-    </div>
+    <div class="btn-group" id="tipologie" role="group"></div>
 
     <!--Prenotazione-->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prenotazione">
@@ -25,7 +23,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modal-bd">
-
           </div>
           <div class="modal-footer">
             <div id="prompt"></div>
@@ -35,10 +32,16 @@
         </div>
       </div>
     </div>
-    <!--Tabella-->
-    <div id="appuntamenti">
 
+    <div class="row mt-3">
+      <div class="col d-flex justify-content-between">
+        <button id="indietro" class="btn btn-primary" id="indietro">Indietro</button>
+        <button id="avanti" class="btn btn-primary" id="avanti">Avanti</button>
+      </div>
     </div>
+
+    <!--Tabella-->
+    <div id="appuntamenti"></div>
   </body>
   <script type="module" src="script.js"></script>
 </html>

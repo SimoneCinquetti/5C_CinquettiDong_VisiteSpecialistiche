@@ -42,10 +42,12 @@ const createTable = (parentElement) => {
 const initTable = (parentElement) => {
     let date;
     let data;
+    let type;
     return {
-        build: (dateInput, dataInput) => {
+        build: (dateInput, dataInput, typo) => {
             date = dateInput;
             data = dataInput;
+            type = typo;
         }, 
         render: () => {
             // Gli orari
@@ -85,6 +87,12 @@ const initTable = (parentElement) => {
             const table = createTable(parentElement);
             table.build(tableStructure);
             table.render();
+        },
+        getCurrentDate: () => {
+            return date;
+        },
+        getCurrentTypo: () => {
+            return type;
         }
     }
 }

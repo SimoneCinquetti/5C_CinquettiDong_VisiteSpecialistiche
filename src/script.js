@@ -7,14 +7,20 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 const form = createModalForm(document.getElementById("modal-bd"));
 const listOfButtons = createListOfButtons(document.getElementById("tipologie"));
 const appTable = initTable(document.getElementById("appuntamenti"));
+const next = document.getElementById("avanti");
+const previous = document.getElementById("indietro");
 
 fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
     
+    // Lista di bottoni
     listOfButtons.build([...keyCache.tipologie], (currentActiveBtn) => {
-        let actualDate = new Date().toISOString().split('T')[0];
-        appTable.build(getMondayOfDate(actualDate), chooseType(cacheRemota.mostraPrenotazioniCache(), currentActiveBtn));
+        appTable.build(
+            appTable.getCurrentDate(), 
+            chooseType(cacheRemota.mostraPrenotazioniCache(), currentActiveBtn),
+            currentActiveBtn
+        );
         appTable.render();
     });
 
@@ -29,7 +35,12 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
         prenotazione+=result[1]
         if(data.length > 0 && result[1].length >0 && result[2].length > 0 ){
             cacheRemota.aggiungerePrenotazioneCache(prenotazione,result[2])
-            document.getElementById("prompt").innerHTML = "Prenotazione effettuata!";
+            appTable.build(
+                appTable.getCurrentDate(), 
+                chooseType(cacheRemota.mostraPrenotazioniCache(), listOfButtons.getCurrentSelectedCategory()), 
+                appTable.getCurrentTypo()
+            );
+            appTable.render();
         } else {
             document.getElementById("prompt").innerHTML = "Prenotazione errata";
         }
@@ -50,5 +61,52 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
         ]
     });
 
+    next.onclick = () => {
+        const newDate = new Date(appTable.getCurrentDate());
+        newDate.setDate(newDate.getDate() + 7)
+        appTable.build(
+            newDate, 
+            chooseType(cacheRemota.mostraPrenotazioniCache(), appTable.getCurrentTypo()), 
+            appTable.getCurrentTypo()
+        );
+        appTable.render();
+    }
+
+    previous.onclick = () => {
+        const newDate = new Date(appTable.getCurrentDate());
+        newDate.setDate(newDate.getDate() - 7)
+        appTable.build(
+            newDate, 
+            chooseType(cacheRemota.mostraPrenotazioniCache(), appTable.getCurrentTypo()), 
+            appTable.getCurrentTypo()
+        );
+        appTable.render();
+    }
+
     form.render();
-})
+
+    const intervalId = setInterval(() => {
+        if (cacheRemota.mostraPrenotazioniCache()) {
+            clearInterval(intervalId);
+            let actualDate = new Date().toISOString().split('T')[0];
+            appTable.build(
+                getMondayOfDate(actualDate), 
+                chooseType(cacheRemota.mostraPrenotazioniCache(), keyCache.tipologie[0]),
+                keyCache.tipologie[0],
+            );
+            appTable.render();
+        }
+    }, 100)
+
+    // Ripetizione
+    setInterval(() => {
+        cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
+        appTable.build(
+            appTable.getCurrentDate(), 
+            chooseType(cacheRemota.mostraPrenotazioniCache(), appTable.getCurrentTypo),
+            appTable.getCurrentTypo(),
+        );
+    }, 300000)
+
+    document.getElementById("button0").click()
+});
