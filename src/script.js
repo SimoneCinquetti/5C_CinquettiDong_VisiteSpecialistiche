@@ -20,13 +20,22 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     // Form
     form.onsubmit((result) => {
-        cacheRemota.aggiungerePrenotazioneCache() //la prenotazione richiede sia la data che la persona
+        //DA AGGIUNGERE LA CATEGORIA E COMBINARLA CON DATA E ORA PER LA PRENOTAZIONE DA INSERIRE
+        //cacheRemota.aggiungerePrenotazioneCache() 
     });
     
     form.setLabels({
-        "etichetta" : [
+        "Data" : [
+            "Date",
+            null
+        ],
+        "Ora" : [
             "select",
-            ["a","b","c"]
+            ["8","9","10","11","12"]
+        ],
+        "Nominativo" : [
+            "text",
+            null
         ]
     });
 
