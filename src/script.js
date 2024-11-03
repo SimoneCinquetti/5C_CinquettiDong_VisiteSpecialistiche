@@ -6,16 +6,17 @@ import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js'
 
 const form = createModalForm(document.getElementById("modal-bd"));
 const listOfButtons = createListOfButtons(document.getElementById("tipologie"));
+const appTable = initTable(document.getElementById("appuntamenti"));
 
 fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
     
     listOfButtons.build([...keyCache.tipologie], (currentActiveBtn) => {
-        console.log(currentActiveBtn);
+        let actualDate = new Date().toISOString().split('T')[0];
+        appTable.build(getMondayOfDate(actualDate), chooseType(cacheRemota.mostraPrenotazioniCache(), currentActiveBtn));
+        appTable.render();
     });
-
-    console.log(listOfButtons.getCurrentSelectedCategory());
 
     listOfButtons.render();
 
