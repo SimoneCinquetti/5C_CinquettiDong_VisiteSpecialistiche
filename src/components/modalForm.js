@@ -40,6 +40,15 @@ return {
             }
         }
 
+        document.querySelector("#prenotare").onclick = () => {
+            const result = Object.keys(data).map((name) => {
+                return document.querySelector("#" + name).value;
+            });
+
+            Object.keys(data).forEach(e => document.querySelector("#" + e).value = "")
+
+            callback(result);
+        }
         parentElement.innerHTML = modalHTML;
     }
 }

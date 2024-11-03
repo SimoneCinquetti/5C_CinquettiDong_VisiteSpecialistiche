@@ -10,6 +10,10 @@ console.log("ciao");
 
 const form = createModalForm(document.getElementById("modal-bd"));
 
+form.onsubmit((result) => {
+    
+});
+
 /*
 table.build(getMondayOfDate("2024-06-04"), 
     { 
