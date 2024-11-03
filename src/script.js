@@ -10,11 +10,12 @@ const listOfButtons = createListOfButtons(document.getElementById("tipologie"));
 fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
-
     
     listOfButtons.build([...keyCache.tipologie], () => {
-        
+
     });
+
+    console.log(listOfButtons.getCurrentSelectedCategory());
 
     listOfButtons.render();
 
