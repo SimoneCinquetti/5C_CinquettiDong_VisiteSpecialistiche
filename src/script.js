@@ -10,8 +10,8 @@ console.log("ciao");
 
 const form = createModalForm(document.getElementById("modal-bd"));
 fetch("./conf.json").then(r => r.json()).then((keyCache) => {
-
-    let cacheRemota= gestorePrenotazioniCache(keyCache,"prenotazioni")
+    console.log(keyCache.cacheToken)
+    let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni")
 
     form.onsubmit((result) => {
         cacheRemota.aggiungerePrenotazioneCache() //la prenotazione richiede sia la data che la persona
