@@ -10,7 +10,7 @@ const listOfButtons = createListOfButtons(document.getElementById("tipologie"));
 fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     let cacheRemota= gestorePrenotazioniCache(keyCache.cacheToken,"prenotazioni");
-    
+
     listOfButtons.build([...keyCache.tipologie], () => {
 
     });
@@ -21,6 +21,7 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
 
     // Form
     form.onsubmit((result) => {
+        
         //DA AGGIUNGERE LA CATEGORIA E COMBINARLA CON DATA E ORA PER LA PRENOTAZIONE DA INSERIRE
         //cacheRemota.aggiungerePrenotazioneCache() 
     });

@@ -15,9 +15,11 @@ const gestorePrenotazioniCache = (keyCacheRemota,nomeDatabaseRemoto) => {
     return {
         aggiungerePrenotazioneCache : (prenotazione,persona) => {
             let check= true
-            for (key in dizionarioPrenotazioni){
-                if (key === prenotazione){
-                    check= false
+            if(Object.keys(dizionarioPrenotazioni).length > 0){
+                for (const key in dizionarioPrenotazioni){
+                    if (key === prenotazione){
+                        check= false
+                    }
                 }
             }
             if (check){
