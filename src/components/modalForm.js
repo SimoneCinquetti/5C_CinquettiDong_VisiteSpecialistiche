@@ -22,19 +22,17 @@ return {
         callback = callbackInput
     },
     render: () => {
-        parentElement.innerHTML+= `
-        <div class='modal' tabindex='-1'>
+        let modalHTML = "";
+        modalHTML += `
                <div class='modal-dialog'>
                  <div class='modal-content'>
                    <div class='modal-body'>
                    `
-             
-             
         for (let key in data) {
             if (data[key][1] == null) {
-                parentElement.innerHTML += `<div>${key}\n<input id="${key}" type="${data[key][0]}"/></div>` + '\n';
+                modalHTML += `<div>${key}\n<input id="${key}" type="${data[key][0]}"/></div>` + '\n';
             } else {
-                parentElement.innerHTML += `
+                modalHTML += `
                     <div>
                         ${key}
                         <${data[key][0]} id="${key}">
@@ -47,7 +45,7 @@ return {
             }
         }
 
-        parentElement.innerHTML += "<button type='button' id='submit'>Prenota</button>";
+        modalHTML += "<button type='button' id='submit'>Prenota</button>";
 
         document.querySelector("#submit").onclick = () => {
             const result = Object.keys(data).map((name) => {
@@ -58,12 +56,12 @@ return {
 
             callback(result);
         }
-        parentElement.innerHTML += `
+        modalHTML += `
                    </div>
                  </div>
                </div>
-             </div>
              `
+        parentElement.innerHTML = modalHTML;
     }
 }
 }

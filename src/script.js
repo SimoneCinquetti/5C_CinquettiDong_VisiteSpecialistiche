@@ -6,7 +6,14 @@ import { getMondayOfDate, chooseType } from './utils.js';
 import { gestorePrenotazioniCache } from './librerie/prenotazioneCacheRemota.js';
 
 //const table = initTable(document.getElementById("tabella"));
-const form = createModalForm(document.getElementById("test"))
+
+console.log("ciao");
+
+const form = createModalForm(document.getElementById("test"));
+
+console.log(document.getElementById("test"));
+console.log("ciao");
+
 /*
 table.build(getMondayOfDate("2024-06-04"), 
     { 
@@ -26,6 +33,7 @@ console.log(chooseType(
 
 table.render();
 */
+
 form.setLabels({
     "etichetta" : [
         "select",
