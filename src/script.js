@@ -41,6 +41,7 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
                 appTable.getCurrentTypo()
             );
             appTable.render();
+            document.getElementById("prompt").innerHTML = "Prenotazione effettuata!";
         } else {
             document.getElementById("prompt").innerHTML = "Prenotazione errata";
         }
