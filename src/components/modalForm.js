@@ -25,10 +25,10 @@ return {
         let modalHTML = "";
         for (let key in data) {
             if (data[key][1] == null) {
-                modalHTML += `<div>${key}\n<input id="${key}" type="${data[key][0]}"/></div>` + '\n';
+                modalHTML += `<div>${key}\n<input class='underPadding2' id="${key}" type="${data[key][0]}"/></div>` + '\n';
             } else {
                 modalHTML += `
-                    <div>
+                    <div class='underPadding2'>
                         ${key}
                         <${data[key][0]} id="${key}">
                           ${Object.entries(data[key][1]).map((value) => 
