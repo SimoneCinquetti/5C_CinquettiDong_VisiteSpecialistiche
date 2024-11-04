@@ -33,7 +33,16 @@ fetch("./conf.json").then(r => r.json()).then((keyCache) => {
         let data=result[0].split("-").reverse().join("")
         prenotazione+=data+"-"
         prenotazione+=result[1]
-        if(data.length > 0 && result[1].length >0 && result[2].length > 0 ){
+
+        let check=true
+        for (const key in cacheRemota.mostraPrenotazioniCache()){
+            let elementi=key.split("-")
+            if(elementi[1]===data && elementi[2]===result[1]){
+                check=false
+            }
+        }
+
+        if(data.length > 0 && result[1].length >0 && result[2].length > 0 && check){
             cacheRemota.aggiungerePrenotazioneCache(prenotazione,result[2])
             appTable.build(
                 appTable.getCurrentDate(), 
